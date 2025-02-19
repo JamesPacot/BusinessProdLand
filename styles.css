@@ -1,9 +1,10 @@
 body {
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
     box-sizing: border-box;
     background-color: #f4f4f4;
+    scroll-behavior: smooth;
 }
 
 header { 
@@ -13,6 +14,10 @@ header {
     padding: 20px;
     background-color: #222;
     color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 nav ul { 
@@ -25,6 +30,11 @@ nav ul li a{
     color: white;
     text-decoration: none;
     font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff6600;
 }
 
 .hero { 
@@ -32,6 +42,7 @@ nav ul li a{
     color: white;
     text-align: center;
     padding: 100px 20px;
+    min-height: 500px;
 }
 
 .btn { 
@@ -41,12 +52,15 @@ nav ul li a{
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .btn:hover {
     background-color: #cc5500;
+    transform: scale(1.05);
 }
+
+
 
 .vehicle-list .grid { 
     display: flex;
@@ -58,28 +72,48 @@ nav ul li a{
 
 .vehicle-card { 
     background: white;
-    padding: 10px;
+    padding: 15px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     border-radius: 8px;
-    width: 250px;
-    flex: 1 1 calc(33.333% - 15px);
-    max-width: 250px;
+   transition: transform 0.2s, box-shadow 0.2s;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 230px;
+   width: 280px;
+   
+}  
+
+.vehicle-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .vehicle-card img { 
     width: 100%;
-    height: auto;
-    max-height: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 5px;
 }
 
+.vehicle-card h3,
+.vehicle-card p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
 @media (max-width: 768px) {
-    .vehicle-list .grid { 
-        grid-template-columns: repeat(1, 1fr);
+    .vehicle-list .grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
+
     .vehicle-card {
-        flex: 1 1 100%;
+        width: 200px;
+        height: 260px;
+    }
+
+    .vehicle-card img {
+        height: 140px;
     }
 }
